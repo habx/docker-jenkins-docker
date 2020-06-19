@@ -12,8 +12,10 @@ RUN echo "deb [arch=amd64] https://download.docker.com/linux/debian stretch stab
         sudo \
         docker-ce docker-ce-cli containerd.io \
         python3-pip && \
-      pip3 install awscli
+      pip3 install \
+        awscli
 
+# Setting jenkins as a sudoer
 RUN     usermod -aG docker jenkins && \
         echo "jenkins ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 USER jenkins
