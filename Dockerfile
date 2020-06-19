@@ -1,0 +1,14 @@
+# This is the TLS to this day
+FROM jenkins/jenkins:2.235.1
+
+# Switching to root to install some stuff
+USER root
+
+# Installing docker repository
+RUN echo "deb [arch=amd64] https://download.docker.com/linux/debian stretch stable" > /etc/apt/sources.list.d/docker.list && \
+        curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add - && \
+        apt-get update && \
+        apt-get -y install docker-ce docker-ce-cli containerd.io sudo
+RUN     usermod -aG docker jenkins && \
+        echo "jenkins ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+USER jenkins
