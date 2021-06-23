@@ -1,5 +1,5 @@
 # This is the TLS to this day
-FROM jenkins/jenkins:2.298
+FROM jenkins/jenkins:2.299
 
 # Switching to root to install some stuff
 USER root
